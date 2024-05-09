@@ -76,32 +76,13 @@ Borrow out = A'Bin + A'B + BBin
 **Program:**
 
 ```
-## Full_adder
-
-module fullas(a,b,cin,sum,carry);
-input a,b,cin;
-output sum,carry;
-wire w1,w2,w3,w4;       
-xor(w1,a,b);
-xor(sum,w1,cin);        
-and(w2,a,b);
-and(w3,b,cin);
-and(w4,cin,a);
-or(carry,w2,w3,w4);
-endmodule
-
-## Full_subtractor
-
-module fullas1(a, b, bin, diff, borrow);
-input a, b, bin;
-output diff, borrow;
-wire w1, w2, w3, w4;   
-xor(w1, a, b);
-xor(diff, w1, bin);
-and(w2, w1, bin);
-and(w3, a, ~b);
-and(w4, ~b, bin);
-or(borrow, w2, w3, w4);
+module FullAddSub(a,b,c,sum,carry,D,BO);
+input a,b,c;
+output sum,carry,D,BO;
+assign sum=a^b^c;
+assign carry=(a&b)|(b&c)|(a&c);
+assign D=a^b^c;
+assign BO=(~a&b)|(b&c)|(~a&c);
 endmodule
 
 ```
@@ -109,23 +90,12 @@ endmodule
 
 **RTL Schematic**
 
-**Full Adder**
+![image](https://github.com/DHIRAVIYASUNDARAM/FULL_ADDER_SUBTRACTOR/assets/165143880/f25fb961-f5a3-4bf2-bad9-529c9f5b28db)
 
-![Screenshot 2024-04-10 143526](https://github.com/DHIRAVIYASUNDARAM/FULL_ADDER_SUBTRACTOR/assets/165143880/652ca2dd-c2dd-49d3-8a5a-3da32f2b4dbf)
-
-**Full Subtrator**
-
-![Screenshot 2024-04-12 155213](https://github.com/DHIRAVIYASUNDARAM/FULL_ADDER_SUBTRACTOR/assets/165143880/858aca77-3bfb-4e5b-a70d-e3fc18bccca4)
 
 **Output Timing Waveform**
 
-**Full Adder**
-
-![Screenshot 2024-04-10 161817](https://github.com/DHIRAVIYASUNDARAM/FULL_ADDER_SUBTRACTOR/assets/165143880/5579a3a5-55e6-47a1-beaa-447a37f51386)
-
-**Full Subtrator**
-
-![Screenshot 2024-04-12 155049](https://github.com/DHIRAVIYASUNDARAM/FULL_ADDER_SUBTRACTOR/assets/165143880/5181df21-0531-401c-a625-95f961e1bdcb)
+![image](https://github.com/DHIRAVIYASUNDARAM/FULL_ADDER_SUBTRACTOR/assets/165143880/76ef9e6e-7ed4-47cf-9bd9-337bc7da5dc7)
 
 
 **Result:**
